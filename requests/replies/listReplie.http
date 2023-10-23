@@ -1,0 +1,15 @@
+GET http://localhost:3333/replie HTTP/1.1
+content-type: application/json
+Authorization:4e01fb4d-46c7-4d72-9f5e-80ca9b30dafe
+
+{
+    "idUser":"d61d7dec-fcc1-461a-83f7-b4ba9263a9d4"
+}
+
+
+
+ 
+
+
+
+

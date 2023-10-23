@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(uuid())
+  name     String  @db.VarChar(50)
+  email    String  @unique @db.VarChar(100)
+  username String  @unique @db.VarChar(50)
+  password String  @db.VarChar(10)
+  enable   Boolean @default(true)
+  token    String? @unique
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  tweet     TweetBase[]
+  reTweet   Replie[]
+  likes     Like[]
+  followed  Follower[]  @relation("followed_users") //usuarios seguidores
+  following Following[] @relation("following_users") //usuarios seguindo
+
+  @@map("users")
+}
+
+model Follower {
+  id             String @id @default(uuid())
+  idUser         String @map("id_user") //representa o Id do usuário que está seguindo
+  idUserFollower String @map("id_user_follower") // id do usuário que vai ser seguido
+
+  follower User @relation("followed_users", fields: [idUser], references: [id])
+
+  @@map("followers")
+}
+
+model Following {
+  id              String @id @default(uuid())
+  idUser          String @map("id_user") //representa o Id do usuário que está seguindo
+  idUserFollowing String @map("id_user_following") // representa o Id do usuário que está sendo seguido
+
+  following User @relation("following_users", fields: [idUser], references: [id])
+
+  @@map("followings")
+}
+
+model TweetBase {
+  id      String   @id @default(uuid())
+  content String   @db.VarChar(255)
+  idUser  String
+  user    User     @relation(fields: [idUser], references: [id])
+  likes   Like[]
+  ReTweet Replie[]
+
+  @@map("tweets_base")
+}
+
+model Replie {
+  id           String @id @default(uuid())
+  content      String @db.VarChar(255)
+  idUserReplie String @map("id_user_replie")
+
+  idTweetBase String @map("id_tweet_base")
+
+  user      User      @relation(fields: [idUserReplie], references: [id])
+  TweetBase TweetBase @relation(fields: [idTweetBase], references: [id])
+
+  @@map("replies")
+}
+
+model Like {
+  id      String @id @default(uuid())
+  like    String @db.VarChar(10)
+  idTweet String @map("id_tweet")
+  idUser  String @map("id_user")
+
+  tweet TweetBase @relation(fields: [idTweet], references: [id])
+  user  User      @relation(fields: [idUser], references: [id])
+
+  @@map("likes")
+}

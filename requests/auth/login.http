@@ -1,0 +1,15 @@
+POST http://localhost:3333/auth/login HTTP/1.1
+content-type: application/json
+
+# {
+#    "username": "dai",
+#       "password": "67890"
+# }
+
+
+
+
+# {"username": "Aleh",
+#       "password": "12345"
+#       }
+ 

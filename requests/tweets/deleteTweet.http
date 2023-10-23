@@ -1,0 +1,3 @@
+DELETE  http://localhost:3333/tweet/8fb48ce8-4a4f-4e7b-9d09-938bed45b7fb HTTP/1.1
+content-type: application/json
+Authorization:4e01fb4d-46c7-4d72-9f5e-80ca9b30dafe

@@ -1,0 +1,10 @@
+POST http://localhost:3333/like HTTP/1.1
+content-type: application/json
+Authorization:fce26d09-180e-4428-8fe1-661188c3b916
+
+{
+   "idUser":"d61d7dec-fcc1-461a-83f7-b4ba9263a9d4",
+   "idTweet":"19bf1ff3-f7f0-417f-955b-8b7861c8d6d2",
+   "like": ""
+  
+}
