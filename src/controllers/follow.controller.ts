@@ -65,7 +65,7 @@ export class FollowController {
   }
   public async listFollowings(req: Request, res: Response) {
     try {
-      const { idUser } = req.params;
+      const { idUser } = req.body;
 
       const followings = await followService.listFollowers(idUser);
 

@@ -6,6 +6,18 @@ import { Like } from "../models/like";
 
 class LikeService {
   public async create(data: CreateLikeDto): Promise<ResponseDto> {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: data.idUser,
+      },
+    });
+
+    if (!user) {
+      return {
+        code: 404,
+        message: "User not found",
+      };
+    }
     const criacaolike = await prisma.like.create({
       data: {
         idUser: data.idUser,

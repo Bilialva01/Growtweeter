@@ -7,6 +7,7 @@ import { ResponseDto } from "./dtos/response.dto";
 import { tweetRoutes } from "./routes/tweet.routes";
 import { replieRoutes } from "./routes/replie.routes";
 import { likeRoutes } from "./routes/like.routes";
+import { followRoutes } from "./routes/follow.routes";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use("/auth", authRoutes());
 app.use("/tweet", tweetRoutes());
 app.use("/replie", replieRoutes());
 app.use("/like", likeRoutes());
+app.use("/follow", followRoutes());
 
 const port = process.env.PORT;
 
