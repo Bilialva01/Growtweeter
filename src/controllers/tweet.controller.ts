@@ -42,11 +42,10 @@ export class TweetController {
   public async update(req: Request, res: Response) {
     try {
       const { idTweet } = req.params;
-      const { idUser, content } = req.body;
+      const { content } = req.body;
 
       const result = await tweetService.update({
         idTweet,
-        idUser,
         content,
       });
 
@@ -61,8 +60,8 @@ export class TweetController {
 
   public async delete(req: Request, res: Response) {
     try {
-      const { idUser } = req.body;
       const { idTweet } = req.params;
+      const { idUser } = req.body;
 
       const result = await tweetService.delete({ idTweet, idUser });
 

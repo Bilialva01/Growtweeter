@@ -12,6 +12,7 @@ model User {
   name     String  @db.VarChar(50)
   email    String  @unique @db.VarChar(100)
   username String  @unique @db.VarChar(50)
+  avatar   String? @db.Text
   password String  @db.VarChar(10)
   enable   Boolean @default(true)
   token    String? @unique

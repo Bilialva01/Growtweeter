@@ -3,6 +3,5 @@ content-type: application/json
 Authorization:45486e5a-7acf-460f-8d65-28df92b8fb2f
 
 {
-   "idUser":"996e493f-f19d-40f5-883b-31969e54982d",
-   "content":"blablabla"
+   "content":""
 }

@@ -56,7 +56,6 @@ class TweetService {
     const tweetEncontrado = await prisma.tweetBase.findUnique({
       where: {
         id: data.idTweet,
-        idUser: data.idUser,
       },
     });
     if (!tweetEncontrado) {
@@ -69,7 +68,6 @@ class TweetService {
     const atualizarTweet = await prisma.tweetBase.update({
       where: {
         id: data.idTweet,
-        idUser: data.idUser,
       },
       data: {
         content: data.content,
@@ -86,7 +84,6 @@ class TweetService {
     const tweetEncontrado = await prisma.tweetBase.findUnique({
       where: {
         id: data.idTweet,
-        idUser: data.idUser,
       },
     });
 
@@ -99,7 +96,6 @@ class TweetService {
     const tweetDeleted = await prisma.tweetBase.delete({
       where: {
         id: data.idTweet,
-        idUser: data.idUser,
       },
     });
 

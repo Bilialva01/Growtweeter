@@ -3,6 +3,7 @@ export interface CreateUserDto {
   email: string;
   username: string;
   password: string;
+  avatar?: string | null;
 }
 
 export interface UpdateUserDto {
@@ -10,6 +11,7 @@ export interface UpdateUserDto {
   name: string;
   email: string;
   username: string;
+  avatar?: string | null;
   password?: string;
   enable?: boolean;
   token?: string | null;

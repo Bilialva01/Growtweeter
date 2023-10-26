@@ -1,4 +1,4 @@
-DELETE  http://localhost:3333/follow/:idUser HTTP/1.1
+DELETE  http://localhost:3333/follow HTTP/1.1
 content-type: application/json
 Authorization:
 

@@ -9,6 +9,11 @@ export class UserController {
   public async create(req: Request, res: Response) {
     try {
       const { name, email, username, password } = req.body;
+      let avatar = null;
+
+      if (req.file) {
+        avatar = `${process.env.API_URL}/${req.file.path}`;
+      }
 
       const result = await userService.create({
         name,

@@ -41,6 +41,8 @@ class UserService {
         email: user.email,
         username: user.username,
         password: user.password,
+        enable: user.enable,
+        avatar: data.avatar,
         id: user.id,
       },
     });

@@ -9,7 +9,6 @@ export const followRoutes = () => {
   router.post("/", authMiddleware, controller.followUser);
   router.delete("/:idUser", authMiddleware, controller.unfollowUser);
 
-  router.get("/", authMiddleware, controller.listFollowers);
   router.get("/", authMiddleware, controller.listFollowings);
 
   return router;

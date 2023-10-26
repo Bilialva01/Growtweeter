@@ -55,8 +55,8 @@ export class ReplieController {
   }
   public async delete(req: Request, res: Response) {
     try {
-      const { idUser } = req.body;
       const { idReplie } = req.params;
+      const { idUser } = req.body;
 
       const result = await replieService.delete({ idUser, idReplie });
 

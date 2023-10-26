@@ -1,11 +1,11 @@
-PUT   http://localhost:3333/users/d61d7dec-fcc1-461a-83f7-b4ba9263a9d4 HTTP/1.1
+PUT   http://localhost:3333/users/:idUser HTTP/1.1
 content-type: application/json
 Authorization:403bce88-2ffd-4d3f-b2db-21ca3ce45879
 
 {
       
-    "name":" Daiane Oltramari ",
-     "email":"daiane@growdev.com.br  ",
-    "username": "dai",
-    "password": "67890"
+    "name":"  ",
+     "email":" ",
+    "username": "",
+    "password": ""
 } 

@@ -23,7 +23,6 @@ class FollowService {
     // Verificar se o usuário está seguindo o usuário alvo
     const existingFollowing = await prisma.following.findFirst({
       where: {
-        idUser: data.idUser,
         idUserFollowing: data.idUserFollower,
       },
     });
@@ -43,19 +42,6 @@ class FollowService {
     return {
       code: 200,
       message: "unfollowing successfully",
-    };
-  }
-  public async listFollowers(idUser: string): Promise<ResponseDto> {
-    // listar seguidores
-    const followers = await prisma.follower.findMany({
-      where: {
-        idUser: idUser,
-      },
-    });
-    return {
-      code: 200,
-      message: "Followers successfully listed",
-      data: followers,
     };
   }
 
