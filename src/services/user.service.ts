@@ -1,39 +1,24 @@
 import prisma from "../database/prisma.database";
 import { User } from "../models/user.model";
+import bcrypt from "bcrypt";
 import { ResponseDto } from "../dtos/response.dto";
 import { CreateUserDto, UpdateUserDto } from "../dtos/user.dto";
 
 class UserService {
-  public async listAll(): Promise<ResponseDto> {
-    const data = await prisma.user.findMany();
-    return {
-      code: 200,
-      message: " users successfully listed",
-      data,
-    };
-  }
-  public async getByDataUser(username: string, password: string) {
-    const user = await prisma.user.findUnique({
-      where: {
-        username: username,
-        password: password,
+  public async findAll(): Promise<any> {
+    const data = await prisma.user.findMany({
+      include: {
+        tweet: true,
+        reTweet: true,
       },
     });
 
-    return user;
-  }
-  public async getByToken(token: string) {
-    const user = await prisma.user.findUnique({
-      where: {
-        token: token,
-      },
-    });
-
-    return user;
+    return data;
   }
 
   public async create(data: CreateUserDto) {
-    const user = new User(data.name, data.email, data.username, data.password);
+    const passwordHash = await bcrypt.hash(data.password, 10);
+    const user = new User(data.name, data.email, data.username, passwordHash);
 
     const criacaoUser = await prisma.user.create({
       data: {
@@ -106,6 +91,26 @@ class UserService {
       code: 200,
       message: "User successfully deleted",
     };
+  }
+  public async findByUsername(username: string) {
+    const user = await prisma.user.findUnique({
+      where: {
+        username,
+      },
+    });
+
+    return user;
+  }
+  public async findById(id: string) {
+    const user = prisma.user.findUnique({
+      where: { id },
+      include: {
+        tweet: true,
+        reTweet: true,
+      },
+    });
+
+    return user;
   }
 }
 export default new UserService();

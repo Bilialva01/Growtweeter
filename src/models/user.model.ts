@@ -47,8 +47,16 @@ export class User {
   public get password() {
     return this._password;
   }
-
   public toJson() {
+    return {
+      id: this._id,
+      name: this._name,
+      email: this._email,
+      username: this._username,
+    };
+  }
+
+  public toSave() {
     return {
       id: this._id,
       name: this._name,

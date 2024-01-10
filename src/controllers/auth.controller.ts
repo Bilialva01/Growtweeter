@@ -1,54 +1,54 @@
 import { Request, Response } from "express";
 import userService from "../services/user.service";
+import jwtService from "../services/jwt.service";
 import { ResponseDto } from "../dtos/response.dto";
 import { v4 as tokenGenerate } from "uuid";
+import authService from "../services/auth.service";
 
 class AuthController {
-  public async create(req: Request, res: Response) {
-    const { username, password } = req.body;
+  public async login(req: Request, res: Response) {
+    const data = req.body;
 
-    const user = await userService.getByDataUser(username, password);
+    const user = await userService.findByUsername(data.username);
 
     if (!user) {
       return res.status(401).send({ message: "Username or password wrong" });
     }
+    const checkPassword = await authService.comparePassword(
+      data.password,
+      user.password
+    );
 
-    const token = tokenGenerate();
-    const update = await userService.update({ ...user, token: token });
-
-    const response: ResponseDto = {
-      code: 200,
-      message: "Login success",
-      data: { token: token },
-    };
-
-    if (update.code === 200) {
-      return res.status(response.code).send(response);
+    if (!checkPassword) {
+      return res
+        .status(401)
+        .send({ success: false, message: "Username or password wrong" });
     }
+
+    const payload = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      username: user.username,
+      avatar: user.avatar,
+      password: user.password,
+      enable: user.enable,
+    };
+    const token = jwtService.createToken(payload);
+
+    return res.status(200).send({
+      success: true,
+      message: "Login succesfully",
+      data: { token, user: payload },
+    });
   }
 
-  public async delete(req: Request, res: Response) {
-    const { token } = req.headers;
+  public logout(req: Request, res: Response) {
+    console.log("logout");
 
-    const user = await userService.getByToken(token as string);
-
-    if (user) {
-      const response: ResponseDto = {
-        code: 200,
-        message: "Logout success",
-      };
-
-      await userService.update({ ...user, token: null });
-
-      return res.status(response.code).send(response);
-    }
-
-    const response: ResponseDto = {
-      code: 404,
-      message: "Logout not found",
-    };
-
-    return res.status(response.code).send(response);
+    return res
+      .status(200)
+      .send({ success: true, message: "Logout succesfully" });
   }
 }
 

@@ -1,0 +1,104 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API ALUNOS JWT",
+    "description": "O API ALUNOS JWT é usada para cadastrar alunos.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3333",
+  "tags": [
+    {
+      "name": "user",
+      "description": "Rotas para cadastro e update de usuários"
+    },
+    {
+      "name": "auth",
+      "description": "Rotas para realizar a autenticação"
+    },
+    {
+      "name": "tweet",
+      "description": "Rotas para cadastro e update de tweets"
+    },
+    {
+      "name": "replie",
+      "description": "Rotas para cadastro e update de replies"
+    },
+    {
+      "name": "like",
+      "description": "Rotas para cadastro e update de likes"
+    }
+  ],
+  "paths": {
+    "/auth": {
+      "description": "Rota para realizar a autenticação",
+      "post": {
+        "tags": ["auth"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "login": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "success": { "type": "boolean" },
+                        "message": { "type": "string" },
+                        "data": {
+                          "token": { "type": "string" },
+                          "user": {
+                            "$ref": "#components/schemas/user"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "user": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "enable": { "type": "boolean" },
+          "login": { "type": "string" }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": {
+    "bearer": []
+  }
+}

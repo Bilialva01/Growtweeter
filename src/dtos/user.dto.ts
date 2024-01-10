@@ -16,3 +16,11 @@ export interface UpdateUserDto {
   enable?: boolean;
   token?: string | null;
 }
+
+export interface UserResponse {
+  id: string;
+  username: string;
+  enable: boolean;
+  createdAt: Date;
+  tweets: any[];
+}

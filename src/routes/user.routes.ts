@@ -1,17 +1,18 @@
 import { Router } from "express";
 import { UserController } from "../controllers/user.controller";
 import userPasswordMiddleware from "../middlewares/user.password.middeware";
-import authMiddleware from "../middlewares/auth.middleware";
+import AuthMiddleware from "../middlewares/auth.middleware";
 
 export const userRoutes = () => {
   const router = Router();
   const controller = new UserController();
+  const authMiddleware = new AuthMiddleware();
 
-  router.post("/", userPasswordMiddleware, controller.create);
+  router.post("/users", userPasswordMiddleware, controller.create);
 
-  router.get("/", authMiddleware, controller.list);
-  router.delete("/:id", authMiddleware, controller.delete);
-  router.put("/:id", authMiddleware, controller.update);
+  router.get("/users", authMiddleware.checkUser, controller.list);
+  router.put("users/:id", authMiddleware.checkUser, controller.update);
+  router.delete("users/:id", authMiddleware.checkUser, controller.delete);
 
   return router;
 };

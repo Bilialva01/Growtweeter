@@ -9,6 +9,12 @@ import { TweetBase } from "../models/tweetBase";
 import prisma from "../database/prisma.database";
 
 class TweetService {
+  public async findAll(): Promise<any> {
+    const data = await prisma.tweetBase.findMany({});
+
+    return data;
+  }
+
   public async listByIdUser(idUser: string): Promise<ResponseDto> {
     // 1- validar se o user existe
     const user = await prisma.user.findUnique({
@@ -103,6 +109,11 @@ class TweetService {
       code: 200,
       message: "Tweet successfully deleted",
     };
+  }
+  public async findById(id: string) {
+    const post = prisma.tweetBase.findUnique({ where: { id } });
+
+    return post;
   }
   public mapToModel(tweet: TweetBasePrisma): TweetBase {
     const model = new TweetBase(tweet.id, tweet.idUser, tweet.content);

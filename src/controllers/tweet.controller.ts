@@ -1,76 +1,97 @@
 import { Request, Response } from "express";
 import tweetService from "../services/tweet.service";
 
-export class TweetController {
-  public async list(req: Request, res: Response) {
-    try {
-      const { idUser } = req.body;
+class TweetController {
+  public async index(req: Request, res: Response) {
+    const tweets = await tweetService.findAll();
 
-      const result = await tweetService.listByIdUser(idUser);
-
-      return res.status(result.code).send(result);
-    } catch (error: any) {
-      res.status(500).send({
-        ok: false,
-        message: error.toString(),
-      });
-    }
+    return res
+      .status(200)
+      .send({ success: true, message: "List of tweets", data: { tweets } });
   }
 
   public async create(req: Request, res: Response) {
-    try {
-      const { idUser, content } = req.body;
+    const user = req.authUser;
+    const { content } = req.body;
 
-      const result = await tweetService.create({
-        idUser,
-        content,
+    if (!content) {
+      return res.status(400).send({
+        success: false,
+        message: " Content camp requered",
       });
+    }
+    const tweet = await tweetService.create({
+      idUser: user.id,
+      content,
+    });
 
-      return res.status(201).send({
-        ok: true,
-        message: "Tweet succesfully created ",
-        data: result,
+    return res.status(201).send({
+      ok: true,
+      message: "Tweet succesfully created ",
+      data: { tweet },
+    });
+  }
+
+  public async list(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      const result = await tweetService.findById(id);
+
+      return res.status(200).send({
+        success: true,
+        message: "Tweet succesfuly listed",
+        data: { result },
       });
     } catch (error: any) {
-      res.status(500).send({
-        ok: false,
-        message: error.toString(),
+      return res.status(404).send({
+        success: false,
+        message: "Tweet not found",
+        data: { error },
       });
     }
   }
-
   public async update(req: Request, res: Response) {
+    const { idTweet } = req.params;
+    const { content } = req.body;
     try {
-      const { idTweet } = req.params;
-      const { content } = req.body;
-
       const result = await tweetService.update({
         idTweet,
         content,
       });
 
-      return res.status(result.code).send(result);
+      return res.status(200).send({
+        success: true,
+        message: "Tweet succesfully updated",
+        data: { tweet: result },
+      });
     } catch (error: any) {
-      res.status(500).send({
-        ok: false,
-        message: error.toString(),
+      return res.status(400).send({
+        success: false,
+        message: "Erro ao atualizar Tweet",
+        data: { error },
       });
     }
   }
 
   public async delete(req: Request, res: Response) {
-    try {
-      const { idTweet } = req.params;
-      const { idUser } = req.body;
+    const { idTweet } = req.params;
+    const { idUser } = req.body;
 
+    try {
       const result = await tweetService.delete({ idTweet, idUser });
 
-      return res.status(result.code).send(result);
+      return res.status(200).send({
+        success: true,
+        message: "Tweet succesfully deleted",
+        data: { tweet: result },
+      });
     } catch (error: any) {
-      res.status(500).send({
-        ok: false,
-        message: error.toString(),
+      return res.status(400).send({
+        success: false,
+        message: "Erro ao deletar Tweet",
+        data: { error },
       });
     }
   }
 }
+export default TweetController;
