@@ -8,7 +8,7 @@ export const tweetRoutes = () => {
   const authMiddleware = new AuthMiddleware();
 
   router.post("/tweets", authMiddleware.checkUser, controller.create);
-  router.get("/tweetss", authMiddleware.checkUser, controller.index);
+  router.get("/tweets", authMiddleware.checkUser, controller.index);
   router.get("/tweets", authMiddleware.checkUser, controller.list);
   router.put("tweets/:idTweet", authMiddleware.checkUser, controller.update);
   router.delete("tweets/:idTweet", authMiddleware.checkUser, controller.delete);

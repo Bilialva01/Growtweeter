@@ -1,11 +1,12 @@
 import { Router } from "express";
-import authMiddleware from "../middlewares/auth.middleware";
 import { FollowerController } from "../controllers/followers.controller";
+import AuthMiddleware from "../middlewares/auth.middleware";
 
 export const followerRoutes = () => {
   const router = Router();
   const controller = new FollowerController();
+  const authMiddleware = new AuthMiddleware();
 
-  router.get("/", authMiddleware, controller.listFollowers);
+  router.get("follower/", authMiddleware.checkUser, controller.listFollowers);
   return router;
 };

@@ -1,15 +1,18 @@
 import { Router } from "express";
 import { FollowController } from "../controllers/follow.controller";
-import authMiddleware from "../middlewares/auth.middleware";
+import AuthMiddleware from "../middlewares/auth.middleware";
 
 export const followRoutes = () => {
   const router = Router();
   const controller = new FollowController();
+  const authMiddleware = new AuthMiddleware();
 
-  router.post("/", authMiddleware, controller.followUser);
-  router.delete("/:idUser", authMiddleware, controller.unfollowUser);
-
-  router.get("/", authMiddleware, controller.listFollowings);
+  router.post("follow/", authMiddleware.checkUser, controller.followUser);
+  router.delete(
+    "follow/:idUser",
+    authMiddleware.checkUser,
+    controller.unfollowUser
+  );
 
   return router;
 };

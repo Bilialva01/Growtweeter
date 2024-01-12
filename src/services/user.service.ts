@@ -18,20 +18,26 @@ class UserService {
 
   public async create(data: CreateUserDto) {
     const passwordHash = await bcrypt.hash(data.password, 10);
-    const user = new User(data.name, data.email, data.username, passwordHash);
+
+    const newUser = new User(
+      data.name,
+      data.email,
+      data.username,
+      passwordHash
+    );
 
     const criacaoUser = await prisma.user.create({
       data: {
-        name: user.name,
-        email: user.email,
-        username: user.username,
-        password: user.password,
-        enable: user.enable,
+        name: newUser.name,
+        email: newUser.email,
+        username: newUser.username,
+        password: newUser.password,
+        enable: newUser.enable,
         avatar: data.avatar,
-        id: user.id,
+        id: newUser.id,
       },
     });
-    return criacaoUser;
+    return newUser;
   }
 
   public async update(data: UpdateUserDto): Promise<ResponseDto> {
