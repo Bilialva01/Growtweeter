@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "API ALUNOS JWT",
-    "description": "O API ALUNOS JWT é usada para cadastrar alunos.",
+    "title": "API GROWTWITTER",
+    "description": "O API GROWTWITTER é usada cadastrar e logar usuarios onde possui todo o sistema de CRUD dos tweets, replies e likes.",
     "version": "1.0.0"
   },
   "host": "localhost:3333",
@@ -13,7 +13,7 @@
     },
     {
       "name": "auth",
-      "description": "Rotas para realizar a autenticação"
+      "description": "Rotas para realizar a autenticação e login/logout "
     },
     {
       "name": "tweet",
@@ -39,7 +39,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "login": {
+                  "username": {
                     "type": "string"
                   },
                   "password": {
