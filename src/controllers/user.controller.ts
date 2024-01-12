@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import userService from "../services/user.service";
 import { UserResponse } from "../dtos/user.dto";
+import { User } from "../models/user.model";
 
 export class UserController {
   public async index(req: Request, res: Response) {
@@ -12,27 +13,26 @@ export class UserController {
   }
 
   public async create(req: Request, res: Response) {
-    try {
-      const { body } = req;
-      let avatar = null;
+    const { body } = req;
+    let avatar = null;
 
-      if (req.file) {
-        avatar = `${process.env.API_URL}/${req.file.path}`;
-      }
+    if (req.file) {
+      avatar = `${process.env.API_URL}/${req.file.path}`;
+    }
 
-      const newUser = await userService.create(body);
-
+    const newUser = await userService.create(body);
+    if (newUser) {
       return res.status(201).send({
         ok: true,
         message: "User succesfully created ",
-        data: { user: newUser },
-      });
-    } catch (error: any) {
-      res.status(500).send({
-        ok: false,
-        message: error.toString(),
+        data: newUser.toJson(),
       });
     }
+
+    res.status(500).send({
+      ok: false,
+      message: "Erro ao criar Usuário",
+    });
   }
   public async list(req: Request, res: Response) {
     const { id } = req.params;

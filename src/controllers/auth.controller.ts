@@ -31,7 +31,6 @@ class AuthController {
       email: user.email,
       username: user.username,
       avatar: user.avatar,
-      password: user.password,
       enable: user.enable,
     };
     const token = jwtService.createToken(payload);
