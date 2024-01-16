@@ -7,12 +7,8 @@ export const followRoutes = () => {
   const controller = new FollowController();
   const authMiddleware = new AuthMiddleware();
 
-  router.post("follow/", authMiddleware.checkUser, controller.followUser);
-  router.delete(
-    "follow/:idUser",
-    authMiddleware.checkUser,
-    controller.unfollowUser
-  );
+  router.post("/", authMiddleware.checkUser, controller.followUser);
+  router.delete("/:idUser", authMiddleware.checkUser, controller.unfollowUser);
 
   return router;
 };

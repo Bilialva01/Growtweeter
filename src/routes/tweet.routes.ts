@@ -7,11 +7,11 @@ export const tweetRoutes = () => {
   const controller = new TweetController();
   const authMiddleware = new AuthMiddleware();
 
-  router.post("/tweets", authMiddleware.checkUser, controller.create);
-  router.get("/tweets", authMiddleware.checkUser, controller.index);
-  router.get("/tweets", authMiddleware.checkUser, controller.list);
-  router.put("tweets/:idTweet", authMiddleware.checkUser, controller.update);
-  router.delete("tweets/:idTweet", authMiddleware.checkUser, controller.delete);
+  router.post("/", authMiddleware.checkUser, controller.create);
+  router.get("/", authMiddleware.checkUser, controller.index);
+  router.get("/", authMiddleware.checkUser, controller.list);
+  router.put("/:idTweet", authMiddleware.checkUser, controller.update);
+  router.delete("/:idTweet", authMiddleware.checkUser, controller.delete);
 
   return router;
 };

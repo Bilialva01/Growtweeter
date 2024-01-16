@@ -7,12 +7,12 @@ export const likeRoutes = () => {
   const controller = new LikeController();
   const authMiddleware = new AuthMiddleware();
 
-  router.post("likes/", authMiddleware.checkUser, controller.create);
+  router.post("/", authMiddleware.checkUser, controller.create);
 
-  router.get("likes/", authMiddleware.checkUser, controller.list);
+  router.get("/", authMiddleware.checkUser, controller.list);
 
-  router.delete("likes/:idLike", authMiddleware.checkUser, controller.delete);
-  router.put("likes/:idLike", authMiddleware.checkUser, controller.update);
+  router.delete("/:idLike", authMiddleware.checkUser, controller.delete);
+  router.put("/:idLike", authMiddleware.checkUser, controller.update);
 
   return router;
 };

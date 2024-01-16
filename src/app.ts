@@ -18,18 +18,19 @@ dotenv.config();
 
 const app = express();
 
+app.use(express.urlencoded({ extended: false }));
+
 app.use(express.json());
 
 app.use(cors());
-
-app.use(userRoutes);
-app.use(tweetRoutes);
-app.use(authRoutes);
-app.use(replieRoutes);
-app.use(likeRoutes);
-app.use(followRoutes);
-app.use(followerRoutes);
 app.use(rootRoutes);
+app.use("/users", userRoutes);
+app.use("/auth", authRoutes);
+app.use("/tweets", tweetRoutes);
+app.use("/replies", replieRoutes);
+app.use("/likes", likeRoutes);
+app.use("/follow", followRoutes);
+app.use("/follower", followerRoutes);
 
 app.use("/docs", swaggerUi.serve);
 app.use("/docs", swaggerUi.setup(swaggerDoc));

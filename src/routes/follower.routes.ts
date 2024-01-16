@@ -7,6 +7,6 @@ export const followerRoutes = () => {
   const controller = new FollowerController();
   const authMiddleware = new AuthMiddleware();
 
-  router.get("follower/", authMiddleware.checkUser, controller.listFollowers);
+  router.get("/", authMiddleware.checkUser, controller.listFollowers);
   return router;
 };

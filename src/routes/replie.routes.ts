@@ -7,16 +7,12 @@ export const replieRoutes = () => {
   const controller = new ReplieController();
   const authMiddleware = new AuthMiddleware();
 
-  router.post("replies/", authMiddleware.checkUser, controller.create);
+  router.post("/", authMiddleware.checkUser, controller.create);
 
-  router.get("replies/", authMiddleware.checkUser, controller.list);
+  router.get("/", authMiddleware.checkUser, controller.list);
 
-  router.delete(
-    "replies/:idReplie",
-    authMiddleware.checkUser,
-    controller.delete
-  );
-  router.put("replies/:idRepie", authMiddleware.checkUser, controller.update);
+  router.delete("/:idReplie", authMiddleware.checkUser, controller.delete);
+  router.put("/:idRepie", authMiddleware.checkUser, controller.update);
 
   return router;
 };

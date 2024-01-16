@@ -6,7 +6,7 @@ export const authRoutes = () => {
   const router = Router();
   const controller = new AuthController();
 
-  router.post("auth/login", userPasswordMiddleware, controller.login);
-  router.get("auth/logout", controller.logout);
+  router.post("/login", userPasswordMiddleware, controller.login);
+  router.get("/logout", controller.logout);
   return router;
 };

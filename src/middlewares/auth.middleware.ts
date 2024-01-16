@@ -1,6 +1,16 @@
 import { NextFunction, Request, Response } from "express";
 import jwtService from "../services/jwt.service";
 
+interface UserPayload {
+  id: string;
+  name: string;
+  email: string;
+  username: string;
+  password: string;
+  avatar: string;
+  enable: boolean;
+  iat: number;
+}
 class AuthMiddleware {
   public async checkUser(req: Request, res: Response, next: NextFunction) {
     try {
@@ -13,16 +23,17 @@ class AuthMiddleware {
       }
       const token = authorization.split(" ")[1];
 
-      const verify = jwtService.verifyToken(token);
+      const verify = jwtService.verifyToken(token) as UserPayload;
 
-      req.authUser = verify as {
-        id: string;
-        nome: string;
-        email: string;
-        username: string;
-        avatar: string;
-        enable: boolean;
-        iat: number;
+      req.authUser = {
+        id: verify?.id,
+        name: verify?.name,
+        email: verify?.email,
+        username: verify?.username,
+        avatar: verify?.avatar,
+        password: verify?.password,
+        enable: verify?.enable,
+        iat: verify?.iat,
       };
 
       next();

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import userService from "../services/user.service";
 import { UserResponse } from "../dtos/user.dto";
-import { User } from "../models/user.model";
 
 export class UserController {
   public async index(req: Request, res: Response) {
@@ -14,11 +13,11 @@ export class UserController {
 
   public async create(req: Request, res: Response) {
     const { body } = req;
-    let avatar = null;
+    // let avatar = null;
 
-    if (req.file) {
-      avatar = `${process.env.API_URL}/${req.file.path}`;
-    }
+    // if (req.file) {
+    //   avatar = `${process.env.API_URL}/${req.file.path}`;
+    // }
 
     const newUser = await userService.create(body);
     if (newUser) {
@@ -62,13 +61,14 @@ export class UserController {
   public async update(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const { name, email, username, password, enable } = req.body;
+      const { name, email, username, avatar, password, enable } = req.body;
 
       const result = await userService.update({
         id,
         name,
         email,
         username,
+        avatar,
         password,
         enable,
       });
