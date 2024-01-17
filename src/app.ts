@@ -24,13 +24,13 @@ app.use(express.json());
 
 app.use(cors());
 app.use(rootRoutes);
-app.use("/users", userRoutes);
-app.use("/auth", authRoutes);
-app.use("/tweets", tweetRoutes);
-app.use("/replies", replieRoutes);
-app.use("/likes", likeRoutes);
-app.use("/follow", followRoutes);
-app.use("/follower", followerRoutes);
+app.use("/users", userRoutes());
+app.use("/auth", authRoutes());
+app.use("/tweets", tweetRoutes());
+app.use("/replies", replieRoutes());
+app.use("/likes", likeRoutes());
+app.use("/follow", followRoutes());
+app.use("/follower", followerRoutes());
 
 app.use("/docs", swaggerUi.serve);
 app.use("/docs", swaggerUi.setup(swaggerDoc));
