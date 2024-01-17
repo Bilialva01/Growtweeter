@@ -1,4 +1,4 @@
-GET http://localhost:3333/like HTTP/1.1
+GET http://localhost:3333/likes HTTP/1.1
 content-type: application/json
 Authorization:4e01fb4d-46c7-4d72-9f5e-80ca9b30dafe
 

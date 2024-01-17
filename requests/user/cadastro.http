@@ -2,9 +2,9 @@ POST http://localhost:3333/users HTTP/1.1
 content-type: application/json
 
 {    
-    "name":" Alexandre Santos ",
-     "email":" alexandre@growdev.com.br",
-    "username": "Alexandy",
-    "password": "12345",
-     "avatar":"cbxajkvbkdjwvbkwv"
+    "name":" Pietro Biliava ",
+     "email":" pietro@growdev.com.br",
+    "username": "Pietro",
+    "password": "224466",
+     "avatar":""
 }

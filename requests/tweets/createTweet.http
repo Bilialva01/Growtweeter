@@ -1,7 +1,7 @@
-POST http://localhost:3333/tweet HTTP/1.1
+POST http://localhost:3333/tweets HTTP/1.1
 content-type: application/json
-Authorization:45486e5a-7acf-460f-8d65-28df92b8fb2f
+Authorization:b99ce691-7a0e-418a-858c-ab3fec8d2351
 
 {
-   "content":""
+   "content":"meu primeiro tweet"
 }
