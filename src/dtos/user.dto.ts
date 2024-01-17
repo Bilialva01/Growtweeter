@@ -1,3 +1,6 @@
+import { Retweet } from "../models/retweet";
+import { TweetBase } from "../models/tweetBase";
+
 export interface CreateUserDto {
   name: string;
   email: string;
@@ -22,5 +25,4 @@ export interface UserResponse {
   username: string;
   enable: boolean;
   createdAt: Date;
-  tweets: any[];
 }

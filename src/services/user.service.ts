@@ -9,7 +9,8 @@ class UserService {
     const data = await prisma.user.findMany({
       include: {
         tweet: true,
-        reTweet: true,
+        retweet: true,
+        replie: true,
       },
     });
 
@@ -112,7 +113,8 @@ class UserService {
       where: { id },
       include: {
         tweet: true,
-        reTweet: true,
+        retweet: true,
+        replie: true,
       },
     });
 

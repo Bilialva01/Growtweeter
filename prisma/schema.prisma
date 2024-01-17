@@ -21,7 +21,8 @@ model User {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   tweet     TweetBase[]
-  reTweet   Replie[]
+  retweet   Retweet[]
+  replie    Replie[]
   likes     Like[]
   followed  Follower[]  @relation("followed_users") //usuarios seguidores
   following Following[] @relation("following_users") //usuarios seguindo
@@ -50,12 +51,13 @@ model Following {
 }
 
 model TweetBase {
-  id      String   @id @default(uuid())
-  content String   @db.VarChar(255)
-  idUser  String
-  user    User     @relation(fields: [idUser], references: [id])
-  likes   Like[]
-  ReTweet Replie[]
+  id       String    @id @default(uuid())
+  content  String    @db.VarChar(255)
+  idUser   String
+  user     User      @relation(fields: [idUser], references: [id])
+  likes    Like[]
+  replies  Replie[]
+  retweets Retweet[]
 
   @@map("tweets_base")
 }
@@ -65,22 +67,39 @@ model Replie {
   content      String @db.VarChar(255)
   idUserReplie String @map("id_user_replie")
 
-  idTweetBase String @map("id_tweet_base")
-
-  user      User      @relation(fields: [idUserReplie], references: [id])
-  TweetBase TweetBase @relation(fields: [idTweetBase], references: [id])
+  idTweetBase String    @map("id_tweet_base")
+  likes       Like[]
+  user        User      @relation(fields: [idUserReplie], references: [id])
+  TweetBase   TweetBase @relation(fields: [idTweetBase], references: [id])
 
   @@map("replies")
 }
 
-model Like {
-  id      String @id @default(uuid())
-  like    String @db.VarChar(10)
-  idTweet String @map("id_tweet")
-  idUser  String @map("id_user")
+model Retweet {
+  id            String @id @default(uuid())
+  content       String @db.VarChar(255)
+  idUserRetweet String @map("id_user_retweet")
 
-  tweet TweetBase @relation(fields: [idTweet], references: [id])
-  user  User      @relation(fields: [idUser], references: [id])
+  idTweetBase String    @map("id_tweet_base")
+  likes       Like[]
+  user        User      @relation(fields: [idUserRetweet], references: [id])
+  TweetBase   TweetBase @relation(fields: [idTweetBase], references: [id])
+
+  @@map("retweets")
+}
+
+model Like {
+  id        String @id @default(uuid())
+  like      String @db.VarChar(10)
+  idTweet   String @map("id_tweet")
+  idRetweet String @map("id_retweet")
+  idReplie  String @map("id_replie")
+  idUser    String @map("id_user")
+
+  tweet   TweetBase @relation(fields: [idTweet], references: [id])
+  retweet Retweet   @relation(fields: [idRetweet], references: [id])
+  user    User      @relation(fields: [idUser], references: [id])
+  Replies Replie    @relation(fields: [idReplie], references: [id])
 
   @@map("likes")
 }

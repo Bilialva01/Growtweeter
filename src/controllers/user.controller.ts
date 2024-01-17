@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import userService from "../services/user.service";
 import { UserResponse } from "../dtos/user.dto";
+import jwtService from "../services/jwt.service";
 
 export class UserController {
   public async index(req: Request, res: Response) {
@@ -13,18 +14,20 @@ export class UserController {
 
   public async create(req: Request, res: Response) {
     const { body } = req;
-    // let avatar = null;
 
-    // if (req.file) {
-    //   avatar = `${process.env.API_URL}/${req.file.path}`;
-    // }
+    let avatar = null;
+
+    if (req.file) {
+      avatar = `${process.env.API_URL}/${req.file.path}`;
+    }
 
     const newUser = await userService.create(body);
+
     if (newUser) {
       return res.status(201).send({
         ok: true,
         message: "User succesfully created ",
-        data: newUser.toJson(),
+        data: newUser,
       });
     }
 
@@ -48,7 +51,6 @@ export class UserController {
       username: user.username,
       enable: user.enable,
       createdAt: user.createdAt,
-      tweets: user.tweet,
     };
 
     return res.status(200).send({
