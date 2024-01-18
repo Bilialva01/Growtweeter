@@ -3,11 +3,13 @@ import { Replie } from "./replie";
 import { TweetBase } from "./tweetBase";
 import { Like } from "./like";
 import { Follow } from "./follow";
+import { Retweet } from "./retweet";
 
 export class User {
   private _id: string;
   private _enable: boolean;
   public tweet: TweetBase[];
+  public retweet:Retweet[];
   public replie: Replie[];
   public likes: Like[];
   public followers: Follow[]; // Lista de IDs dos seguidores do usuário
@@ -21,6 +23,7 @@ export class User {
     this._id = createUuid();
     this._enable = true;
     this.tweet = [];
+    this.retweet=[];
     this.replie = [];
     this.likes = [];
     this.followers = [];

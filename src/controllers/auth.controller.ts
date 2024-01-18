@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import userService from "../services/user.service";
 import jwtService from "../services/jwt.service";
-import { ResponseDto } from "../dtos/response.dto";
-import { v4 as tokenGenerate } from "uuid";
 import authService from "../services/auth.service";
 
 class AuthController {

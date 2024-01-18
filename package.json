@@ -9,7 +9,8 @@
     "test": "jest --silent --noStackTrace --runInBand",
     "test:verbose": "jest --verbose --runInBand --detectOpenHandles",
     "test:coverage": "jest --runInBand --coverage",
-    "test:watch": "jest --silent --noStackTrace --runInBand --watchAll"
+    "test:watch": "jest --silent --noStackTrace --runInBand --watchAll",
+    "reset-database": "ts-node reset-database.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -32,7 +33,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@prisma/client": "^5.4.1",
+    "@prisma/client": "^5.8.1",
     "@prisma/migrate": "^5.8.1",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
