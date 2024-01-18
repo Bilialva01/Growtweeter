@@ -9,6 +9,12 @@ import { ResponseDto } from "../dtos/response.dto";
 import { Retweet } from "../models/retweet";
 
 class RetweetService {
+  public async findAll(): Promise<any> {
+    const data = await prisma.retweet.findMany({});
+
+    return data;
+  }
+
   public async create(data: CreateRetweetDto): Promise<ResponseDto> {
     const createdReplie = await prisma.retweet.create({
       data: {

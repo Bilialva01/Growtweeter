@@ -1,7 +1,15 @@
 import { Request, Response } from "express";
 import retweetService from "../services/retweet.service";
 
-export class RetweetController {
+class RetweetController {
+  public async index(req: Request, res: Response) {
+    const retweets = await retweetService.findAll();
+
+    return res
+      .status(200)
+      .send({ success: true, message: "List of retweets", data: { retweets } });
+  }
+
   public async create(req: Request, res: Response) {
     try {
       const { idUser, idTweetBase, content } = req.body;
@@ -69,3 +77,4 @@ export class RetweetController {
     }
   }
 }
+export default RetweetController;

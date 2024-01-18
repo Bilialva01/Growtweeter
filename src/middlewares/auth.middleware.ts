@@ -12,6 +12,22 @@ interface UserPayload {
   iat: number;
 }
 class AuthMiddleware {
+  static checkUser(
+    arg0: string,
+    checkUser: any,
+    logout: (
+      req: Request<
+        import("express-serve-static-core").ParamsDictionary,
+        any,
+        any,
+        import("qs").ParsedQs,
+        Record<string, any>
+      >,
+      res: Response<any, Record<string, any>>
+    ) => Response<any, Record<string, any>>
+  ) {
+    throw new Error("Method not implemented.");
+  }
   public async checkUser(req: Request, res: Response, next: NextFunction) {
     try {
       const authorization = req.headers.authorization;

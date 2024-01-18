@@ -11,7 +11,7 @@ class TweetController {
   }
 
   public async create(req: Request, res: Response) {
-    const user = req.authUser;
+    const idUser = req.authUser.id;
     const { content } = req.body;
 
     if (!content) {
@@ -21,7 +21,7 @@ class TweetController {
       });
     }
     const tweet = await tweetService.create({
-      idUser: user.id,
+      idUser: idUser,
       content,
     });
 
