@@ -52,9 +52,11 @@ class TweetController {
   }
   public async update(req: Request, res: Response) {
     const { idTweet } = req.params;
+    const {id}= req.authUser
     const { content } = req.body;
     try {
       const result = await tweetService.update({
+        idUser:id,
         idTweet,
         content,
       });
@@ -75,10 +77,10 @@ class TweetController {
 
   public async delete(req: Request, res: Response) {
     const { idTweet } = req.params;
-    const { idUser } = req.body;
+    const {id}= req.authUser
 
     try {
-      const result = await tweetService.delete({ idTweet, idUser });
+      const result = await tweetService.delete({ idTweet, idUser:id });
 
       return res.status(200).send({
         success: true,

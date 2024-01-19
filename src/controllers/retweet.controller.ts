@@ -12,10 +12,11 @@ class RetweetController {
 
   public async create(req: Request, res: Response) {
     try {
-      const { idUser, idTweetBase, content } = req.body;
+      const {id}= req.authUser
+      const {  idTweetBase, content } = req.body;
 
       const result = await retweetService.create({
-        idUser,
+        idUser:id,
         idTweetBase,
         content,
       });
@@ -30,9 +31,9 @@ class RetweetController {
   }
   public async list(req: Request, res: Response) {
     try {
-      const { idUser } = req.body;
+      const {id}= req.authUser
 
-      const response = await retweetService.listByIdUser(idUser);
+      const response = await retweetService.listByIdUser(id);
 
       return res.status(response.code).send(response);
     } catch (error: any) {
@@ -44,11 +45,12 @@ class RetweetController {
   }
   public async update(req: Request, res: Response) {
     try {
+      const {id}= req.authUser
       const { idRetweet } = req.params;
-      const { idUser, content } = req.body;
+      const {  content } = req.body;
 
       const result = await retweetService.update({
-        idUser,
+        idUser:id,
         idRetweet,
         content,
       });
@@ -64,9 +66,9 @@ class RetweetController {
   public async delete(req: Request, res: Response) {
     try {
       const { idRetweet } = req.params;
-      const { idUser } = req.body;
+      const {id}= req.authUser
 
-      const result = await retweetService.delete({ idUser, idRetweet });
+      const result = await retweetService.delete({ idUser:id, idRetweet });
 
       return res.status(result.code).send(result);
     } catch (error: any) {

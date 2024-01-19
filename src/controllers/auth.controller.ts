@@ -1,7 +1,9 @@
-import { Request, Response } from "express";
+
 import userService from "../services/user.service";
 import jwtService from "../services/jwt.service";
 import authService from "../services/auth.service";
+import { Request, Response } from "express";
+
 
 class AuthController {
   public async login(req: Request, res: Response) {
@@ -36,16 +38,24 @@ class AuthController {
     return res.status(200).send({
       success: true,
       message: "Login succesfully",
-      data: { token, user: payload },
+      data: { token, user: payload }
     });
   }
 
-  public logout(req: Request, res: Response) {
-    console.log("logout");
+  public async logout(req: Request, res: Response) {
+    try {
+      const { id } = req.authUser;
 
-    return res
-      .status(200)
-      .send({ success: true, message: "Logout succesfully" });
+      const result= await authService.delete(id);
+
+      return res.status(result.code).send(result.message);
+      
+    } catch (error: any) {
+      res.status(500).send({
+        ok: false,
+        message: error.toString(),
+      });
+    }
   }
 }
 

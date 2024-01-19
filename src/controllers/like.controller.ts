@@ -26,9 +26,9 @@ export class LikeController {
   public async delete(req: Request, res: Response) {
     try {
       const { idLike } = req.params;
-      const { idUser } = req.body;
+      const {id}= req.authUser
 
-      const response = await likeService.delete({ idUser, idLike });
+      const response = await likeService.delete({ idUser:id, idLike });
 
       return res.status(response.code).send(response);
     } catch (error: any) {

@@ -4,10 +4,11 @@ import replyService from "../services/reply.service";
 export class ReplyController {
   public async create(req: Request, res: Response) {
     try {
-      const { idUser, idTweetBase, content } = req.body;
+      const {id}= req.authUser
+      const {  idTweetBase, content } = req.body;
 
       const result = await replyService.create({
-        idUser,
+        idUser:id,
         idTweetBase,
         content,
       });
@@ -22,9 +23,9 @@ export class ReplyController {
   }
   public async list(req: Request, res: Response) {
     try {
-      const { idUser } = req.body;
+      const {id}= req.authUser
 
-      const response = await replyService.listByIdUser(idUser);
+      const response = await replyService.listByIdUser(id);
 
       return res.status(response.code).send(response);
     } catch (error: any) {
@@ -37,10 +38,11 @@ export class ReplyController {
   public async update(req: Request, res: Response) {
     try {
       const { idReply } = req.params;
-      const { idUser, content } = req.body;
+      const {id}= req.authUser
+      const { content } = req.body;
 
       const result = await replyService.update({
-        idUser,
+        idUser:id,
         idReply,
         content,
       });
@@ -56,9 +58,9 @@ export class ReplyController {
   public async delete(req: Request, res: Response) {
     try {
       const { idReply } = req.params;
-      const { idUser } = req.body;
+      const {id}= req.authUser
 
-      const result = await replyService.delete({ idUser, idReply });
+      const result = await replyService.delete({ idUser:id, idReply });
 
       return res.status(result.code).send(result);
     } catch (error: any) {
