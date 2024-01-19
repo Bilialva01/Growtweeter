@@ -99,7 +99,7 @@ class TweetService {
         message: "Tweet not found",
       };
     }
-    const tweetDeleted = await prisma.tweetBase.delete({
+    await prisma.tweetBase.delete({
       where: {
         id: data.idTweet,
       },
@@ -111,9 +111,9 @@ class TweetService {
     };
   }
   public async findById(id: string) {
-    const post = prisma.tweetBase.findUnique({ where: { id } });
+    const tweet = prisma.tweetBase.findUnique({ where: { id } });
 
-    return post;
+    return tweet;
   }
   public mapToModel(tweet: TweetBasePrisma): TweetBase {
     const model = new TweetBase(tweet.id, tweet.idUser, tweet.content);

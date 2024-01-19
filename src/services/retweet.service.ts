@@ -16,7 +16,7 @@ class RetweetService {
   }
 
   public async create(data: CreateRetweetDto): Promise<ResponseDto> {
-    const createdReplie = await prisma.retweet.create({
+    const createdRetweet = await prisma.retweet.create({
       data: {
         idUserRetweet: data.idUser,
         content: data.content,
@@ -27,7 +27,7 @@ class RetweetService {
     return {
       code: 201,
       message: "Retweet created sucessfully",
-      data: this.mapToModel(createdReplie).toJson(),
+      data: this.mapToModel(createdRetweet).toJson(),
     };
   }
   public async listByIdUser(idUser: string): Promise<ResponseDto> {

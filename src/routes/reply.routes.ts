@@ -1,18 +1,18 @@
 import { Router } from "express";
-import { ReplieController } from "../controllers/replie.controller";
+import { ReplyController } from "../controllers/reply.controller";
 import AuthMiddleware from "../middlewares/auth.middleware";
 
-export const replieRoutes = () => {
+export const replyRoutes = () => {
   const router = Router();
-  const controller = new ReplieController();
+  const controller = new ReplyController();
   const authMiddleware = new AuthMiddleware();
 
   router.post("/", authMiddleware.checkUser, controller.create);
 
   router.get("/", authMiddleware.checkUser, controller.list);
 
-  router.delete("/:idReplie", authMiddleware.checkUser, controller.delete);
-  router.put("/:idRepie", authMiddleware.checkUser, controller.update);
+  router.delete("/:idReply", authMiddleware.checkUser, controller.delete);
+  router.put("/:idReply", authMiddleware.checkUser, controller.update);
 
   return router;
 };
