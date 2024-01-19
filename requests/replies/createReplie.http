@@ -1,6 +1,6 @@
-POST http://localhost:3333/replie HTTP/1.1
+POST http://localhost:3333/replies HTTP/1.1
 content-type: application/json
-Authorization:fce26d09-180e-4428-8fe1-661188c3b916
+
 
 {
    "idTweetBase":"",

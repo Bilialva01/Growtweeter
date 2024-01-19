@@ -1,6 +1,6 @@
 PUT   http://localhost:3333/tweet/:idTweet HTTP/1.1
 content-type: application/json
-Authorization:403bce88-2ffd-4d3f-b2db-21ca3ce45879
+
 
 {
        "content":"troquei o content"

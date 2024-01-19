@@ -1,6 +1,6 @@
 POST http://localhost:3333/tweets HTTP/1.1
 content-type: application/json
-
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImExNTQ0OWViLTkwZjgtNDUyMC05NDgyLTk3YzIzOGUwMzRjNiIsIm5hbWUiOiIgUGlldHJvIEJpbGlhdmEgIiwiZW1haWwiOiIgcGlldHJvQGdyb3dkZXYuY29tLmJyIiwidXNlcm5hbWUiOiJQaWV0cm8iLCJhdmF0YXIiOiIiLCJlbmFibGUiOnRydWUsImlhdCI6MTcwNTYxODg0OX0.ozpkHC8mNY1TFDbibt4_ZRVZYT8eweR1COlGPN2ur7s
 
 {
    "content":"meu primeiro tweet"

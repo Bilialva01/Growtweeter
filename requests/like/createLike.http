@@ -1,9 +1,9 @@
 POST http://localhost:3333/likes HTTP/1.1
 content-type: application/json
-Authorization:fce26d09-180e-4428-8fe1-661188c3b916
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImExNTQ0OWViLTkwZjgtNDUyMC05NDgyLTk3YzIzOGUwMzRjNiIsIm5hbWUiOiIgUGlldHJvIEJpbGlhdmEgIiwiZW1haWwiOiIgcGlldHJvQGdyb3dkZXYuY29tLmJyIiwidXNlcm5hbWUiOiJQaWV0cm8iLCJhdmF0YXIiOiIiLCJlbmFibGUiOnRydWUsImlhdCI6MTcwNTYyMDA2NX0.AvrJhlyt2JnSKRMlqChLsKxc0C9fWuMYH5K7tx1940k
 
-{
-   "idTweet":"",
+{   "idUser":"a15449eb-90f8-4520-9482-97c238e034c6",
+   "idTweet":"7a3fa54a-fa5c-4a45-9215-f3997eaf2b16",
    "like": ""
   
 }

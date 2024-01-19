@@ -1,2 +1,2 @@
-DELETE http://localhost:3333/likes/0c09c540-1ede-4894-8211-f6c4da16a61e HTTP/1.1
+DELETE http://localhost:3333/likes/:idLike HTTP/1.1
 content-type: application/json
