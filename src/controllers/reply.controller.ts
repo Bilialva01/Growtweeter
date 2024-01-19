@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import replyService from "../services/replie.service";
+import replyService from "../services/reply.service";
 
 export class ReplyController {
   public async create(req: Request, res: Response) {
