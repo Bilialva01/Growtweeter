@@ -13,6 +13,7 @@ import { replyRoutes } from "./routes/reply.routes";
 import { likeRoutes } from "./routes/like.routes";
 import { followRoutes } from "./routes/follow.routes";
 import { followerRoutes } from "./routes/follower.routes";
+import { retweetRoutes } from "./routes/retweet.routes";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use("/users", userRoutes());
 app.use("/auth", authRoutes());
 app.use("/tweets", tweetRoutes());
 app.use("/replies", replyRoutes());
+app.use("retweets",retweetRoutes())
 app.use("/likes", likeRoutes());
 app.use("/follow", followRoutes());
 app.use("/follower", followerRoutes());

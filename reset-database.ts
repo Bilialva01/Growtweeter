@@ -9,7 +9,7 @@ async function resetDatabase() {
     await prisma.follower.deleteMany({});
     await prisma.following.deleteMany({});
     await prisma.like.deleteMany({});
-    await prisma.replie.deleteMany({});
+    await prisma.reply.deleteMany({});
     await prisma.tweetBase.deleteMany({});
     await prisma.user.deleteMany({});
 
