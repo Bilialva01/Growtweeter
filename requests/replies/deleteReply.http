@@ -1,0 +1,4 @@
+DELETE http://localhost:3333/replies/:idReply HTTP/1.1
+content-type: application/json
+
+

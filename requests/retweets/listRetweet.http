@@ -1,0 +1,8 @@
+GET  http://localhost:3333/retweets HTTP/1.1
+content-type: application/json
+Authorization:Bearer 
+
+{
+    "idUser":"d61d7dec-fcc1-461a-83f7-b4ba9263a9d4"
+}
+//lista todos os tweets no id do user de token authorization 
