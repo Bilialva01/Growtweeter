@@ -1,6 +1,6 @@
 import { Like } from "./like";
 
-export class Replie {
+export class Reply {
   public likes: Like[];
   constructor(
     private _id: string,

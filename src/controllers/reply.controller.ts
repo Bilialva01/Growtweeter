@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import replieService from "../services/replie.service";
+import replyService from "../services/replie.service";
 
-export class ReplieController {
+export class ReplyController {
   public async create(req: Request, res: Response) {
     try {
       const { idUser, idTweetBase, content } = req.body;
 
-      const result = await replieService.create({
+      const result = await replyService.create({
         idUser,
         idTweetBase,
         content,
@@ -24,7 +24,7 @@ export class ReplieController {
     try {
       const { idUser } = req.body;
 
-      const response = await replieService.listByIdUser(idUser);
+      const response = await replyService.listByIdUser(idUser);
 
       return res.status(response.code).send(response);
     } catch (error: any) {
@@ -36,12 +36,12 @@ export class ReplieController {
   }
   public async update(req: Request, res: Response) {
     try {
-      const { idReplie } = req.params;
+      const { idReply } = req.params;
       const { idUser, content } = req.body;
 
-      const result = await replieService.update({
+      const result = await replyService.update({
         idUser,
-        idReplie,
+        idReply,
         content,
       });
 
@@ -55,10 +55,10 @@ export class ReplieController {
   }
   public async delete(req: Request, res: Response) {
     try {
-      const { idReplie } = req.params;
+      const { idReply } = req.params;
       const { idUser } = req.body;
 
-      const result = await replieService.delete({ idUser, idReplie });
+      const result = await replyService.delete({ idUser, idReply });
 
       return res.status(result.code).send(result);
     } catch (error: any) {

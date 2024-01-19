@@ -5,9 +5,8 @@ export class Like {
     private _idUser: string,
     public like: string
   ) {
-    this.like = "❤";
+   
   }
-
   public get id() {
     return this._id;
   }

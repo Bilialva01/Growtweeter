@@ -1,7 +1,9 @@
 export interface CreateLikeDto {
   idUser: string;
-  idTweet: string;
-  like: "❤";
+  idTweet?: string;
+  idRetweet?:string;
+  idReply?:string;
+  
 }
 export interface FoundLikeDTO {
   idUser: string;

@@ -1,5 +1,5 @@
 import { v4 as createUuid } from "uuid";
-import { Replie } from "./replie";
+import { Replie } from "./reply";
 import { TweetBase } from "./tweetBase";
 import { Like } from "./like";
 import { Follow } from "./follow";

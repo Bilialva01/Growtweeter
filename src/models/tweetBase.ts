@@ -1,16 +1,16 @@
-import { Replie } from "./replie";
+import { Reply } from "./reply";
 import { Like } from "./like";
 
 export class TweetBase {
   public likes: Like[];
-  public replie: Replie[];
+  public reply: Reply[];
   constructor(
     private _id: string,
     private _idUser: string,
     private _content: string
   ) {
     this.likes = [];
-    this.replie = [];
+    this.reply = [];
   }
 
   public get id() {
