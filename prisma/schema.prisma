@@ -15,14 +15,14 @@ model User {
   avatar   String? @db.Text
   password String  @db.VarChar()
   enable   Boolean @default(true)
-  token    String? @unique
+ 
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   tweet     TweetBase[]
-  retweet   Retweet[]
-  replie    Replie[]
+  retweets   Retweet[]
+  replies    Reply[]
   likes     Like[]
   followed  Follower[]  @relation("followed_users") //usuarios seguidores
   following Following[] @relation("following_users") //usuarios seguindo
@@ -56,20 +56,20 @@ model TweetBase {
   idUser   String
   user     User      @relation(fields: [idUser], references: [id])
   likes    Like[]
-  replies  Replie[]
+  replies  Reply[]
   retweets Retweet[]
 
   @@map("tweets_base")
 }
 
-model Replie {
+model Reply {
   id           String @id @default(uuid())
   content      String @db.VarChar(255)
-  idUserReplie String @map("id_user_replie")
+  idUserReply String @map("id_user_replie")
 
   idTweetBase String    @map("id_tweet_base")
   likes       Like[]
-  user        User      @relation(fields: [idUserReplie], references: [id])
+  user        User      @relation(fields: [idUserReply], references: [id])
   TweetBase   TweetBase @relation(fields: [idTweetBase], references: [id])
 
   @@map("replies")
@@ -90,16 +90,16 @@ model Retweet {
 
 model Like {
   id        String @id @default(uuid())
-  like      String @db.VarChar(10)
-  idTweet   String @map("id_tweet")
-  idRetweet String @map("id_retweet")
-  idReplie  String @map("id_replie")
   idUser    String @map("id_user")
+  idTweet   String? @map("id_tweet")
+  idRetweet String? @map("id_retweet")
+  idReply  String? @map("id_replie")
+  
 
-  tweet   TweetBase @relation(fields: [idTweet], references: [id])
-  retweet Retweet   @relation(fields: [idRetweet], references: [id])
+  tweet   TweetBase? @relation(fields: [idTweet], references: [id])
+  retweet Retweet?  @relation(fields: [idRetweet], references: [id])
   user    User      @relation(fields: [idUser], references: [id])
-  Replies Replie    @relation(fields: [idReplie], references: [id])
+  Replies Reply?   @relation(fields: [idReply], references: [id])
 
   @@map("likes")
 }
