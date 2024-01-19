@@ -76,6 +76,7 @@ class TweetService {
         id: data.idTweet,
       },
       data: {
+        idUser:data.idUser,
         content: data.content,
       },
     });

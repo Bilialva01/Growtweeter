@@ -9,8 +9,8 @@ class UserService {
     const data = await prisma.user.findMany({
       include: {
         tweet: true,
-        retweet: true,
-        replie: true,
+        retweets: true,
+        replies: true,
       },
     });
 
@@ -27,7 +27,7 @@ class UserService {
       passwordHash
     );
 
-    const criacaoUser = await prisma.user.create({
+      await prisma.user.create({
       data: {
         name: newUser.name,
         email: newUser.email,
@@ -63,7 +63,6 @@ class UserService {
         email: data.email,
         username: data.username,
         password: data.password,
-        token: data.token,
       },
     });
 
@@ -113,8 +112,8 @@ class UserService {
       where: { id },
       include: {
         tweet: true,
-        retweet: true,
-        replie: true,
+        retweets: true,
+        replies: true,
       },
     });
 

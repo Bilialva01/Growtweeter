@@ -4,6 +4,7 @@ export interface CreateTweetDto {
 }
 
 export interface UpdateTweetDto {
+  idUser:string;
   idTweet: string;
   content?: string;
 }
