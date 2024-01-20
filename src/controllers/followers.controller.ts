@@ -5,9 +5,9 @@ export class FollowerController {
   //lista os seguidores de um user
   public async listFollowers(req: Request, res: Response) {
     try {
-      const { idUser } = req.body;
+      const { id } = req.authUser;
 
-      const followers = await followerService.list(idUser);
+      const followers = await followerService.list(id);
 
       return res.status(200).send({
         ok: true,

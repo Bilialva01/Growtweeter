@@ -29,7 +29,7 @@ app.use("/users", userRoutes());
 app.use("/auth", authRoutes());
 app.use("/tweets", tweetRoutes());
 app.use("/replies", replyRoutes());
-app.use("retweets",retweetRoutes())
+app.use("/retweets",retweetRoutes())
 app.use("/likes", likeRoutes());
 app.use("/follow", followRoutes());
 app.use("/follower", followerRoutes());

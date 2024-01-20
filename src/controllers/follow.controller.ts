@@ -6,9 +6,10 @@ export class FollowController {
   //seguir um user
   public async followUser(req: Request, res: Response) {
     try {
-      const { idUser, idUserFollower } = req.body as FoundFollowDTO;
+      const {id} = req.authUser;
+      const { idUserFollower } = req.body
 
-      const result = await followService.followUser({ idUser, idUserFollower });
+      const result = await followService.followUser({ idUser:id, idUserFollower });
 
       return res.status(200).send({
         ok: true,
@@ -25,10 +26,11 @@ export class FollowController {
   //deixar de seguir um user
   public async unfollowUser(req: Request, res: Response) {
     try {
-      const { idUser, idUserFollower } = req.body as FoundFollowDTO;
+      const {id} = req.authUser;
+      const { idUserFollower } = req.body;
 
       const result = await followService.unfollowUser({
-        idUser,
+        idUser:id,
         idUserFollower,
       });
 
@@ -47,9 +49,9 @@ export class FollowController {
   //listar quem eu sigo
   public async listFollowings(req: Request, res: Response) {
     try {
-      const { idUser } = req.body;
+      const { id } = req.authUser;
 
-      const followings = await followService.listFollowings(idUser);
+      const followings = await followService.listFollowings(id);
 
       return res.status(200).send({
         ok: true,

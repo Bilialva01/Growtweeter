@@ -1,5 +1,5 @@
 export interface FoundFollowDTO {
-  idUser: string;
+  idUser: string; // id do usuário que irá seguir alguém
   idUserFollower: string; // id do usuário que será seguido
 }
 
