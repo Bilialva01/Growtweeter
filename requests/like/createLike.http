@@ -1,9 +1,8 @@
 POST http://localhost:3333/likes HTTP/1.1
 content-type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImExNTQ0OWViLTkwZjgtNDUyMC05NDgyLTk3YzIzOGUwMzRjNiIsIm5hbWUiOiIgUGlldHJvIEJpbGlhdmEgIiwiZW1haWwiOiIgcGlldHJvQGdyb3dkZXYuY29tLmJyIiwidXNlcm5hbWUiOiJQaWV0cm8iLCJhdmF0YXIiOiIiLCJlbmFibGUiOnRydWUsImlhdCI6MTcwNTYyMDA2NX0.AvrJhlyt2JnSKRMlqChLsKxc0C9fWuMYH5K7tx1940k
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1NGZlN2ZjLTMwYzYtNDhiNy1iNDg2LTk0MmMwZTFhMWQ3MiIsIm5hbWUiOiIgQWxleGFuZHJlIFNhbnRvcyAiLCJlbWFpbCI6IiBBbGV4YW5kcmVAZ3Jvd2Rldi5jb20uYnIiLCJ1c2VybmFtZSI6IkFsZXhhbmRyZSIsImF2YXRhciI6IiIsImVuYWJsZSI6dHJ1ZSwiaWF0IjoxNzA1NzA3MjE5fQ.avrbcpOub6WIOT9CceFxmqQssTKdndP-I7glbG-_sK0
+ 
 
-{   "idUser":"a15449eb-90f8-4520-9482-97c238e034c6",
-   "idTweet":"7a3fa54a-fa5c-4a45-9215-f3997eaf2b16",
-   "like": ""
-  
-}
+ {
+   "idTweet":"c1e0a81a-bd39-4e72-8c63-f9b83390ea2d"
+ }
