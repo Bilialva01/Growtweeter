@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "API GROWTWITTER",
-    "description": "O API GROWTWITTER é usada cadastrar e logar usuarios onde possui todo o sistema de CRUD dos tweets, replies e likes.",
+    "description": "O API GROWTWITTER é usada para cadastrar e logar usuarios onde possui todo o sistema de CRUD dos tweets, retwets, replies e likes.",
     "version": "1.0.0"
   },
   "host": "localhost:3333",
