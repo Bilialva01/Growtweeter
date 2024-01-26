@@ -21,5 +21,4 @@ async function resetDatabase() {
   }
 }
 
-// Execute a função para zerar o banco de dados.
 resetDatabase();
