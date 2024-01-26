@@ -1,16 +1,16 @@
 import { v4 as createUuid } from "uuid";
-import { Replie } from "./reply";
-import { TweetBase } from "./tweetBase";
-import { Like } from "./like";
 import { Follow } from "./follow";
+import { Like } from "./like";
+import { Reply } from "./reply";
 import { Retweet } from "./retweet";
+import { TweetBase } from "./tweetBase";
 
 export class User {
   private _id: string;
   private _enable: boolean;
   public tweet: TweetBase[];
   public retweet:Retweet[];
-  public replie: Replie[];
+  public replie: Reply[];
   public likes: Like[];
   public followers: Follow[]; // Lista de IDs dos seguidores do usuário
   public following: Follow[];
